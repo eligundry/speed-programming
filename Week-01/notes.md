@@ -10,3 +10,6 @@
 * Try not to write spaghetti code
 * KISS (Keep It Simple Stupid)
 * Use the simplist data types possible
+* GoTo's are bad, but loops have GoTo's. Are loops bad?
+	* No, because it is hidden.
+* Try not to use pointers
