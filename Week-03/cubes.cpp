@@ -16,7 +16,6 @@
  */
 
 #include <stdio.h>
-#include <cmath>
 
 int main(void)
 {
@@ -26,10 +25,10 @@ int main(void)
 		d = 1;
 
 	for (; a <= 200; ++a) {
-		for (b = 1; b <= a; ++b) {
-			for (c = 1; c <= b; ++c) {
-				for (d = 1; d <= c; ++d) {
-					if (pow(a, 3) == (pow(b, 3) + pow(c, 3) + pow(d, 3))) {
+		for (b = 1; b < a; ++b) {
+			for (c = 1; c < b; ++c) {
+				for (d = 1; d < c; ++d) {
+					if ((a * a * a) == ((b * b * b) + (c * c * c) + (d * d * d))) {
 						printf("Cube = %d, Triple = (%d,%d,%d)\n", a, b, c, d);
 						b = c = d = a;
 					}
