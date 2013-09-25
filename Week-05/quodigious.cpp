@@ -15,12 +15,19 @@
  * =====================================================================================
  */
 
-#include <stdio.h>
-#include <string>
 #include <iostream>
+#include <cmath>
 
 void getQD(int in)
 {
+	int start = pow(10, in - 1),
+		end = pow(10, in),
+		digits[10];
+
+	for(int di = 0; start != end; ++start) {
+	}
+
+	std::cout << std::endl;
 }
 
 int main(void)
