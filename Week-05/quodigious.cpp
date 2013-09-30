@@ -22,9 +22,15 @@ void getQD(int in)
 {
 	int start = pow(10, in - 1),
 		end = pow(10, in),
-		digits[10];
+		digits[10],
+		current = 0;
 
-	for(int di = 0; start != end; ++start) {
+	for(int di = 0; start != end; ++start, di = 0) {
+		current = start;
+
+		while (current != 0) {
+			++di;
+		}
 	}
 
 	std::cout << std::endl;
