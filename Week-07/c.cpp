@@ -23,7 +23,7 @@
 #include <stdio.h>
 #include <sstream>
 
-const int MAX_SIZE = 839;
+const int MAX_SIZE = 838;
 
 void generateNonEs(std::vector<int>& list)
 {
@@ -43,24 +43,28 @@ void generateNonEs(std::vector<int>& list)
         bool found_e = false;
 
 		for (int it = temp.length() - 1; it > 0 || !found_e; --it, ++place_counter) {
-			if ((place_counter % 4) == 0) {
-				if ((temp[it] != '2') && (temp[it] != '4') && (temp[it] != '6') && (temp[it]!='0')) {
+			// zeroes, thousands
+			if ((place_counter % 3) == 0) {
+				if ((temp[it] != '2') && (temp[it] != '4') && (temp[it] != '6') && (temp[it] != '0')) {
 					found_e = true;
 				}
 			}
 
-			if ((place_counter % 4) == 1) {
-				if ((temp[it] != '3') && (temp[it] != '4') && (temp[it] != '5') && (temp[it] != '6')) {
+			// tens, ten thousands
+			if ((place_counter % 3) == 1) {
+				if ((temp[it] != '3') && (temp[it] != '4') && (temp[it] != '5') && (temp[it] != '6') && (temp[it] != '0')) {
 					found_e = true;
 				}
 
 			}
 
-			if ((place_counter % 4) == 2) {
+			// hundreds, hundred thousands
+			if ((place_counter % 3) == 2) {
 				if (temp[it] != '0') {
 					found_e = true;
 				}
 			}
+
 
 			if (it == 0 && !found_e) {
 				list.push_back(i);
@@ -80,7 +84,7 @@ int main()
 	generateNonEs(list_of_non_e);
 
 	for (int i = 0; i < MAX_SIZE; ++i)
-		std::cout << i << ": " << list_of_non_e[i] << std::endl;
+		std::cout << i + 1 << ": " << list_of_non_e[i] << std::endl;
 
 	// while (std::cin.getline(temp, 100)) {
 	// 	sscanf(temp, "%d", input);
