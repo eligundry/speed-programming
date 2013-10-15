@@ -23,7 +23,7 @@
 #include <stdio.h>
 #include <sstream>
 
-const int MAX_SIZE = 838;
+const int MAX_SIZE = 2000;
 
 void generateNonEs(std::vector<int>& list)
 {
@@ -79,18 +79,20 @@ int main()
 {
 	char temp[100];
 	int input;
-	std::vector<int> list_of_non_e;
+	std::vector<int> list_of_non_e, results;
 
 	generateNonEs(list_of_non_e);
 
-	for (int i = 0; i < MAX_SIZE; ++i)
-		std::cout << i + 1 << ": " << list_of_non_e[i] << std::endl;
+	while (std::cin.getline(temp, 100)) {
+		sscanf(temp, "%d", input);
 
-	// while (std::cin.getline(temp, 100)) {
-	// 	sscanf(temp, "%d", input);
-	// 	std::cout << input << std::endl;
-	// 	// results.push_back(list_of_non_e[input]);
-	// }
+		if (input == 0) {
+			for (int i = 0; i < results.size(); ++i)
+				std::cout << results[i] << std::endl;
 
-	return 0;
+			return 0;
+		} else {
+			results.push_back(list_of_non_e[input - 1]);
+		}
+	}
 }
