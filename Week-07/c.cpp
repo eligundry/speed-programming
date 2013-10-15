@@ -1,0 +1,92 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  c.cpp
+ *
+ *    Description:  Our attempt at the 'Give me an E' problem
+ *
+ *        Version:  1.0
+ *        Created:  10/14/2013 06:14:39 PM
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  Eli Gundry
+ *					Brian Boll
+ *					Johnny Beedlow
+ *
+ * =====================================================================================
+ */
+
+#include <string>
+#include <iostream>
+#include <vector>
+#include <stdio.h>
+#include <sstream>
+
+const int MAX_SIZE = 839;
+
+void generateNonEs(std::vector<int>& list)
+{
+	std::ostringstream stream1;
+	std::string temp;
+	int i = 1,
+		place_counter = 0;
+
+	do {
+		// Convert int to string
+		stream1.str("");
+		stream1.clear();
+		stream1 << i;
+		temp = stream1.str();
+
+		place_counter = 0;
+        bool found_e = false;
+
+		for (int it = temp.length() - 1; it > 0 || !found_e; --it, ++place_counter) {
+			if ((place_counter % 4) == 0) {
+				if ((temp[it] != '2') && (temp[it] != '4') && (temp[it] != '6') && (temp[it]!='0')) {
+					found_e = true;
+				}
+			}
+
+			if ((place_counter % 4) == 1) {
+				if ((temp[it] != '3') && (temp[it] != '4') && (temp[it] != '5') && (temp[it] != '6')) {
+					found_e = true;
+				}
+
+			}
+
+			if ((place_counter % 4) == 2) {
+				if (temp[it] != '0') {
+					found_e = true;
+				}
+			}
+
+			if (it == 0 && !found_e) {
+				list.push_back(i);
+			}
+		}
+
+		++i;
+	} while (list.size() < MAX_SIZE);
+}
+
+int main()
+{
+	char temp[100];
+	int input;
+	std::vector<int> list_of_non_e;
+
+	generateNonEs(list_of_non_e);
+
+	for (int i = 0; i < MAX_SIZE; ++i)
+		std::cout << i << ": " << list_of_non_e[i] << std::endl;
+
+	// while (std::cin.getline(temp, 100)) {
+	// 	sscanf(temp, "%d", input);
+	// 	std::cout << input << std::endl;
+	// 	// results.push_back(list_of_non_e[input]);
+	// }
+
+	return 0;
+}
